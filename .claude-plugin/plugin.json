@@ -1,0 +1,14 @@
+{
+  "name": "aspnetzero-blazor-telerik",
+  "displayName": "Blazor + Telerik for ASP.NET Zero (community)",
+  "version": "1.0.0",
+  "description": "Community skill for adding, converting, and reviewing Blazor UI built with Telerik UI for Blazor in ASP.NET Zero / ASP.NET Boilerplate (ABP) solutions on .NET 10+. Covers the full vertical slice (entity, AppService, DTOs, permissions, localization) and the Blazor-into-ANZ host wiring.",
+  "author": {
+    "name": "qmmughal",
+    "url": "https://github.com/qmmughal"
+  },
+  "homepage": "https://github.com/qmmughal/aspnetzero-blazor-telerik.skill",
+  "repository": "https://github.com/qmmughal/aspnetzero-blazor-telerik.skill",
+  "license": "MIT",
+  "keywords": ["aspnetzero", "abp", "aspnet-boilerplate", "blazor", "telerik", "dotnet"]
+}

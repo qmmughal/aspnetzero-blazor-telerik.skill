@@ -6,46 +6,45 @@
 > Blazor-into-ANZ integration seams (static web assets, middleware order, circuit-scoped DI, unit of
 > work, AbpSession over SignalR, TelerikRootComponent, Metronic conflicts).
 
-This is a Claude Code Agent Skill, not a general web page: it is a folder containing a `SKILL.md`
+This is a Claude plugin bundling one Agent Skill, not a general web page. The skill is a folder containing a `SKILL.md`
 (with YAML frontmatter `name` + `description`) that Claude Code loads to decide when to activate the
 skill, plus supporting reference docs and copy-paste code templates. See the repo `README.md` for
-installation into `~/.claude/skills/` or `<project>/.claude/skills/`.
+installation as a plugin or into `~/.claude/skills/` / `<project>/.claude/skills/`.
 
 ## Core
 
-- [SKILL.md](SKILL.md): Skill entry point — frontmatter that triggers activation, plus the
+- [skills/aspnetzero-blazor-telerik/SKILL.md](skills/aspnetzero-blazor-telerik/SKILL.md): Skill entry point — frontmatter that triggers activation, plus the
   step-by-step approach (establish ground truth on ANZ/ABP/Telerik versions and hosting model before
   writing code, decide full-slice vs. UI-only scope, then implement).
 - [README.md](README.md): Human-readable overview and installation instructions.
-- [aspnetzero-blazor-telerik.skill](aspnetzero-blazor-telerik.skill): Original packaged file — a zip
-  of this skill folder, kept for direct download/install without cloning the repo.
+- [.claude-plugin/plugin.json](.claude-plugin/plugin.json): Plugin manifest.
 
 ## Reference docs
 
-- [references/integration-setup.md](references/integration-setup.md): Wiring Blazor into the ANZ
+- [references/integration-setup.md](skills/aspnetzero-blazor-telerik/references/integration-setup.md): Wiring Blazor into the ANZ
   host — static web assets, middleware order, hosting model detection (legacy Blazor Server graft vs.
   unified Blazor Web App vs. WASM).
-- [references/abp-backend.md](references/abp-backend.md): Entities, ABP `AppService` + DTOs,
+- [references/abp-backend.md](skills/aspnetzero-blazor-telerik/references/abp-backend.md): Entities, ABP `AppService` + DTOs,
   `AppPermissions`, localization, multi-tenancy, Mapperly vs. AutoMapper mapping.
-- [references/telerik-patterns.md](references/telerik-patterns.md): Telerik UI for Blazor grid/form
+- [references/telerik-patterns.md](skills/aspnetzero-blazor-telerik/references/telerik-patterns.md): Telerik UI for Blazor grid/form
   component patterns wired to ABP paging/sorting/filtering conventions.
-- [references/checklist.md](references/checklist.md): Pre-flight and review checklist for a
+- [references/checklist.md](skills/aspnetzero-blazor-telerik/references/checklist.md): Pre-flight and review checklist for a
   Blazor+Telerik change in an ANZ/ABP solution.
 
 ## Templates
 
-- [assets/templates/Product.cs](assets/templates/Product.cs): Example ABP entity.
-- [assets/templates/ProductDtos.cs](assets/templates/ProductDtos.cs): Example DTOs.
-- [assets/templates/IProductAppService.cs](assets/templates/IProductAppService.cs): Example ABP
+- [assets/templates/Product.cs](skills/aspnetzero-blazor-telerik/assets/templates/Product.cs): Example ABP entity.
+- [assets/templates/ProductDtos.cs](skills/aspnetzero-blazor-telerik/assets/templates/ProductDtos.cs): Example DTOs.
+- [assets/templates/IProductAppService.cs](skills/aspnetzero-blazor-telerik/assets/templates/IProductAppService.cs): Example ABP
   AppService interface.
-- [assets/templates/ProductAppService.cs](assets/templates/ProductAppService.cs): Example ABP
+- [assets/templates/ProductAppService.cs](skills/aspnetzero-blazor-telerik/assets/templates/ProductAppService.cs): Example ABP
   AppService implementation.
-- [assets/templates/GridRequestMapper.cs](assets/templates/GridRequestMapper.cs): Maps Telerik grid
+- [assets/templates/GridRequestMapper.cs](skills/aspnetzero-blazor-telerik/assets/templates/GridRequestMapper.cs): Maps Telerik grid
   requests (paging/sorting/filtering) to ABP query conventions.
-- [assets/templates/ScopedExecutor.cs](assets/templates/ScopedExecutor.cs): Circuit-scoped DI /
+- [assets/templates/ScopedExecutor.cs](skills/aspnetzero-blazor-telerik/assets/templates/ScopedExecutor.cs): Circuit-scoped DI /
   unit-of-work helper for Blazor Server components calling ABP services.
-- [assets/templates/ProductList.razor](assets/templates/ProductList.razor): Example TelerikGrid list
+- [assets/templates/ProductList.razor](skills/aspnetzero-blazor-telerik/assets/templates/ProductList.razor): Example TelerikGrid list
   page.
-- [assets/templates/ProductEditWindow.razor](assets/templates/ProductEditWindow.razor): Example
+- [assets/templates/ProductEditWindow.razor](skills/aspnetzero-blazor-telerik/assets/templates/ProductEditWindow.razor): Example
   Telerik edit window/form.
-- [assets/templates/README.md](assets/templates/README.md): Notes on how the templates fit together.
+- [assets/templates/README.md](skills/aspnetzero-blazor-telerik/assets/templates/README.md): Notes on how the templates fit together.
