@@ -296,9 +296,10 @@ default theme fights Metronic on form controls, buttons, and spacing. Load Teler
 Metronic's so its cascade wins where they overlap, and scope any additional overrides to a wrapper
 class rather than editing Metronic.
 
-**Licensing.** Recent Telerik versions require a license key at build time — `telerik-license.txt` in
-the user profile, or the `TELERIK_LICENSE` environment variable in CI. A build error mentioning
-licensing is an environment problem; don't work around it in code.
+**Licensing.** Recent Telerik versions require the user's Telerik license key to be installed at
+build time (on the developer machine and in CI). A build error mentioning licensing is an environment
+problem: point the user to Telerik's licensing docs, don't work around it in code, and never look for,
+read, or print the key.
 
 **Version drift.** Between Telerik 7.x and 14.x, toolbar, filtering, and editing APIs have changed
 names and shapes. Check the installed version's API rather than writing from memory. Telerik publishes
