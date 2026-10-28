@@ -185,9 +185,10 @@ Full patterns, including the grid-to-AppService bridge, in `references/telerik-p
   table become a memory problem. `OnRead` maps cleanly onto `PagedResultDto`: set `args.Data` from
   `Items` and `args.Total` from `TotalCount`. Translating `args.Request.Sorts` into the Dynamic LINQ
   string ANZ expects is the fiddly part; there's a reusable helper in the reference file.
-- **Licensing.** Recent Telerik versions require a license key (a `telerik-license.txt` in the user
-  profile or a `TELERIK_LICENSE` environment variable) at build time. A build failing with a licensing
-  message is a machine/CI setup issue, not a code issue — say so rather than editing code around it.
+- **Licensing.** Recent Telerik versions require the user's Telerik license key to be installed at
+  build time. A build failing with a licensing message is a machine/CI setup issue, not a code issue —
+  tell the user to install their key following Telerik's licensing docs. Never look for, read, print,
+  or copy the key yourself, and don't edit code around the error.
 - **Theme coexistence.** ANZ ships Metronic on Bootstrap 5. Telerik's Bootstrap theme collides least;
   the default theme will fight Metronic's form and button styling. Load the Telerik theme *after*
   Metronic and expect to scope a few overrides. Don't restyle Metronic to suit Telerik.

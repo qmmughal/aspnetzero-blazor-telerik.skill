@@ -74,6 +74,10 @@ Nothing. The plugin is instructions, reference Markdown, and C#/Razor template f
 hooks, no MCP servers, and no scripts; it makes no network requests and collects no data. Templates
 are copied into your project only when you ask Claude to scaffold code.
 
+The skill never reads credentials from your machine. It mentions that Telerik builds need your
+license key and that a Blazor WebAssembly client sends your app's own bearer token to your own ANZ
+API — both are explanations of how your application works, not actions the plugin takes.
+
 ## Trademarks
 
 This is an independent community project. It is not affiliated with or endorsed by Volosoft (ASP.NET
