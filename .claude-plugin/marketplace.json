@@ -1,0 +1,14 @@
+{
+  "name": "qmmughal-aspnetzero",
+  "owner": {
+    "name": "qmmughal",
+    "url": "https://github.com/qmmughal"
+  },
+  "plugins": [
+    {
+      "name": "aspnetzero-blazor-telerik",
+      "source": "./",
+      "description": "Add, convert, and review Blazor + Telerik UI in ASP.NET Zero / ABP solutions on .NET 10+."
+    }
+  ]
+}

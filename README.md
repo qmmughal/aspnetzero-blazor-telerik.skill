@@ -1,6 +1,6 @@
 # aspnetzero-blazor-telerik
 
-A [Claude Code](https://claude.com/claude-code) Agent Skill for adding, converting, and reviewing
+A Claude plugin (one Agent Skill) for adding, converting, and reviewing
 **Blazor UI in ASP.NET Zero (ANZ) / ASP.NET Boilerplate (ABP)** solutions using **Telerik UI for
 Blazor**, on .NET 10+.
 
@@ -25,33 +25,42 @@ in ways that look like Blazor bugs but are actually ABP lifetime-mismatch bugs.
 
 | Path | Purpose |
 |---|---|
-| [`SKILL.md`](SKILL.md) | The skill definition Claude Code loads — when to use it, and the step-by-step approach. |
-| [`references/integration-setup.md`](references/integration-setup.md) | Host wiring: static assets, middleware order, hosting model detection. |
-| [`references/abp-backend.md`](references/abp-backend.md) | Entities, `AppService`, DTOs, permissions, localization, mapping. |
-| [`references/telerik-patterns.md`](references/telerik-patterns.md) | Telerik grid/form component patterns and gotchas. |
-| [`references/checklist.md`](references/checklist.md) | Pre-flight / review checklist for a Blazor+Telerik change in an ANZ solution. |
-| [`assets/templates/`](assets/templates/) | Copy-paste starting points: entity, DTOs, `AppService` + interface, grid request mapper, scoped executor, Telerik list/edit `.razor` components. |
+| [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) | Plugin manifest (name, version, author, license). |
+| [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) | Lets Claude Code add this repo as a plugin marketplace. |
+| [`skills/aspnetzero-blazor-telerik/SKILL.md`](skills/aspnetzero-blazor-telerik/SKILL.md) | The skill definition Claude Code loads — when to use it, and the step-by-step approach. |
+| [`skills/aspnetzero-blazor-telerik/references/integration-setup.md`](skills/aspnetzero-blazor-telerik/references/integration-setup.md) | Host wiring: static assets, middleware order, hosting model detection. |
+| [`skills/aspnetzero-blazor-telerik/references/abp-backend.md`](skills/aspnetzero-blazor-telerik/references/abp-backend.md) | Entities, `AppService`, DTOs, permissions, localization, mapping. |
+| [`skills/aspnetzero-blazor-telerik/references/telerik-patterns.md`](skills/aspnetzero-blazor-telerik/references/telerik-patterns.md) | Telerik grid/form component patterns and gotchas. |
+| [`skills/aspnetzero-blazor-telerik/references/checklist.md`](skills/aspnetzero-blazor-telerik/references/checklist.md) | Pre-flight / review checklist for a Blazor+Telerik change in an ANZ solution. |
+| [`skills/aspnetzero-blazor-telerik/assets/templates/`](skills/aspnetzero-blazor-telerik/assets/templates/) | Copy-paste starting points: entity, DTOs, `AppService` + interface, grid request mapper, scoped executor, Telerik list/edit `.razor` components. |
 | [`llms.txt`](llms.txt) | Machine-readable index of this repo for LLM agents/crawlers. |
 
 ## How to use it
 
-Claude Code discovers **Agent Skills** from a `SKILL.md` file inside a named folder under a skills
-directory. This repo *is* that folder (`aspnetzero-blazor-telerik/`), so installing it is just placing
-it in one of those directories:
-
-- **Personal, all projects:** clone (or copy the extracted `aspnetzero-blazor-telerik/` folder) into
-  `~/.claude/skills/aspnetzero-blazor-telerik/`.
-- **Project-scoped, checked into a repo:** copy the folder into
-  `<your-project>/.claude/skills/aspnetzero-blazor-telerik/`.
+### Claude Code (plugin)
 
 ```bash
-git clone https://github.com/qmmughal/aspnetzero-blazor-telerik.skill.git \
-  ~/.claude/skills/aspnetzero-blazor-telerik
+claude plugin marketplace add qmmughal/aspnetzero-blazor-telerik.skill
+claude plugin install aspnetzero-blazor-telerik@qmmughal-aspnetzero
 ```
 
-Once the folder is in place, Claude Code reads the YAML frontmatter in `SKILL.md` (`name` +
-`description`) to decide when the skill is relevant — no manual invocation needed. It activates
-automatically for prompts like:
+Or from inside Claude Code: `/plugin marketplace add qmmughal/aspnetzero-blazor-telerik.skill`, then
+`/plugin install aspnetzero-blazor-telerik@qmmughal-aspnetzero`.
+
+### Manual skill install
+
+Copy just the skill folder into a skills directory:
+
+- **Personal, all projects:** `~/.claude/skills/aspnetzero-blazor-telerik/`
+- **Project-scoped:** `<your-project>/.claude/skills/aspnetzero-blazor-telerik/`
+
+```bash
+git clone https://github.com/qmmughal/aspnetzero-blazor-telerik.skill.git
+cp -r aspnetzero-blazor-telerik.skill/skills/aspnetzero-blazor-telerik ~/.claude/skills/
+```
+
+Claude reads the YAML frontmatter in `SKILL.md` (`name` + `description`) to decide when the skill is
+relevant — no manual invocation needed. It activates automatically for prompts like:
 
 - "Add a Blazor page to my ASP.NET Zero project"
 - "Convert this DataTables/jQuery page to Blazor"
@@ -59,20 +68,17 @@ automatically for prompts like:
 - "`blazor.server.js` 404" / "`AbpSession.TenantId` is null in my component"
 - Any `.razor` work in a Zero/ABP solution
 
-### Direct download
+## What this plugin runs and sends
 
-[`aspnetzero-blazor-telerik.skill`](aspnetzero-blazor-telerik.skill) is the original packaged file —
-a zip of this same skill folder, kept in the repo for direct download/install without cloning. To use
-it:
+Nothing. The plugin is instructions, reference Markdown, and C#/Razor template files only. It has no
+hooks, no MCP servers, and no scripts; it makes no network requests and collects no data. Templates
+are copied into your project only when you ask Claude to scaffold code.
 
-```bash
-curl -LO https://github.com/qmmughal/aspnetzero-blazor-telerik.skill/raw/main/aspnetzero-blazor-telerik.skill
-unzip aspnetzero-blazor-telerik.skill -d ~/.claude/skills/
-```
+## Trademarks
 
-That extracts straight to `~/.claude/skills/aspnetzero-blazor-telerik/` (the zip's top-level entry is
-already named `aspnetzero-blazor-telerik/`). Swap the destination for
-`<your-project>/.claude/skills/` for a project-scoped install instead.
+This is an independent community project. It is not affiliated with or endorsed by Volosoft (ASP.NET
+Zero, ASP.NET Boilerplate), Progress Software (Telerik), Microsoft, or Anthropic. Product names are
+used only to describe what the skill works with.
 
 ## License
 
